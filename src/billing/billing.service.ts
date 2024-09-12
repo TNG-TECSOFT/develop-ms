@@ -1,13 +1,11 @@
-import {  Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom, Observable } from 'rxjs';
 import { CreateBillingDto } from './dto/create-billing.dto';
 import { envs } from '../config/env';
 
-
 @Injectable()
 export class BillingService {
-
   private readonly logger = new Logger('Billing Service');
 
   private readonly API_URL = envs.api_url;

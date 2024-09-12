@@ -1,4 +1,4 @@
-import { Module} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { BillingService } from './billing.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';

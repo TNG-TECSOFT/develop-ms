@@ -5,13 +5,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { envs } from './config/env';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.TCP,
-    options: {
-      host: envs.host,
-      port: envs.port,
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    {
+      transport: Transport.TCP,
+      options: {
+        host: envs.host,
+        port: envs.port,
+      },
     },
-  });
+  );
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -19,7 +22,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  
+
   await app.listen();
 }
 bootstrap();

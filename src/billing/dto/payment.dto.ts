@@ -1,6 +1,14 @@
-import { IsNumber, IsDateString, IsString, IsNotEmpty, MaxLength, IsPositive, Min, IsOptional } from 'class-validator';
-export class PaymentDTO{
-
+import {
+  IsNumber,
+  IsDateString,
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  IsPositive,
+  Min,
+  IsOptional,
+} from 'class-validator';
+export class PaymentDTO {
   @IsNumber()
   @IsPositive()
   PaymentID: number;
