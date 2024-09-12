@@ -19,8 +19,7 @@ const envsSchema = joi.object({
 .unknown(true);
 
 const { error, value } = envsSchema.validate({ 
-  ...process.env,
-  TCP_SERVICE: process.env.TCP_SERVICE?.split(',')
+  ...process.env
 });
 
 
