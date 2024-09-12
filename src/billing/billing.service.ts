@@ -33,9 +33,9 @@ export class BillingService {
     throw error;
   }
 
-  async getDatosClientesTango(codCliente: string) {
+  async getClientData(clientId: string) {
     const url = `${this.API_URL}/Customer`;
-    const params = { pageSize: 500, pageNumber: 1, filter: codCliente };
+    const params = { pageSize: 500, pageNumber: 1, filter: clientId };
 
     try {
       const response$ = this.httpService.get(url, {
@@ -49,7 +49,7 @@ export class BillingService {
     }
   }
 
-  async getDatosProductsTango(sku: string) {
+  async getProductData(sku: string) {
     const url = `${this.API_URL}/Product`;
     const params = { pageSize: 500, pageNumber: 1, filter: sku };
 

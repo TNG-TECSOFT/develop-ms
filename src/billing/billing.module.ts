@@ -3,6 +3,7 @@ import { HttpModule } from '@nestjs/axios';
 import { BillingService } from './billing.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { envs } from '../config/env';
+import { BillingController } from './billing.controller';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { envs } from '../config/env';
       },
     ]),
   ],
+  controllers: [BillingController],
   providers: [BillingService],
   exports: [BillingService],
 })

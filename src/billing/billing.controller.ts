@@ -7,23 +7,18 @@ import { CreateBillingDto } from './dto/create-billing.dto';
 export class BillingController {
   constructor(private readonly billingService: BillingService) {}
 
-  @MessagePattern({ cmd: 'getDatosCliente' })
-  async getDatosClienteTango(
-    @Payload() codCliente: string
-  ){
-    return this.billingService.getDatosClientesTango(codCliente);
+  @MessagePattern('getClientData')
+  handleGetClientData(clientId: string) {
+    return this.billingService.getClientData(clientId);
   }
 
-  @MessagePattern({ cmd: 'getDatosProduct' })
-  async getDatosProductsTango(
-    @Payload() sku: string
-  ){
-    return this.billingService.getDatosProductsTango(sku);
+  @MessagePattern('getProductData')
+  handleGetProductData(sku: string) {
+    return this.billingService.getProductData(sku);
   }
-  @MessagePattern({ cmd: 'createOrder' })
-  async createOrder(
-    @Payload() orderData: CreateBillingDto
-  ){
+
+  @MessagePattern('createOrder')
+  handleCreateOrder(orderData: CreateBillingDto) {
     return this.billingService.createOrder(orderData);
   }
 }
