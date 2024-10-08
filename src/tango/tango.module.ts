@@ -1,9 +1,9 @@
 import { Module} from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
-import { BillingService } from './billing.service';
+import { TangoService } from './tango.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { envs } from '../config/env';
-import { BillingController } from './billing.controller';
+import { TangoController } from './tango.controller';
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { BillingController } from './billing.controller';
       },
     ]),
   ],
-  controllers: [BillingController],
-  providers: [BillingService],
-  exports: [BillingService],
+  controllers: [TangoController],
+  providers: [TangoService],
+  exports: [TangoService],
 })
-export class BillingModule {}
+export class TangoModule {}

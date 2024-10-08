@@ -4,17 +4,19 @@ import * as joi from 'joi';
 interface EnvVars {
   PORT: number,
   HOST: string,
-  API_URL: string;
+  TANGO_API_URL: string;
   TANGO_TOKEN_TEST: string;
   TCP_SERVICE: string;
+  SECRET_KEY: string;
 }
 
 const envsSchema = joi.object({
   PORT: joi.number().required(),
   HOST: joi.string().required(),
-  API_URL: joi.string().required(),
+  TANGO_API_URL: joi.string().required(),
   TANGO_TOKEN_TEST: joi.string().required(),
   TCP_SERVICE: joi.string().required(),
+  SECRET_KEY: joi.string().required(),
 })
 .unknown(true);
 
@@ -29,11 +31,11 @@ if ( error ) {
 
 const envVars:EnvVars = value;
 
-
 export const envs = {
   port: envVars.PORT,
   host: envVars.HOST,
-  api_url: envVars.API_URL,
+  tango_api_url: envVars.TANGO_API_URL,
   tango_token_test: envVars.TANGO_TOKEN_TEST,
   tcp_service: envVars.TCP_SERVICE,
+  secret_key: envVars.SECRET_KEY,
 };

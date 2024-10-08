@@ -1,8 +1,8 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsString, ValidateNested, IsArray, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CustomerDTO, OrderItemDTO, ShippingDTO, CashPaymentDTO, PaymentDTO } from './index';
+import { OrderItemDTO, ShippingDTO, CashPaymentDTO, PaymentDTO, CustomerDTO } from './index';
 
-export class CreateBillingDto {
+export class CreateOrderDto {
 
     @IsDateString()
     Date: string;
@@ -96,4 +96,8 @@ export class CreateBillingDto {
     @ValidateNested({ each: true })
     @Type(() => PaymentDTO)
     Payments?: PaymentDTO[];
+
+    @IsOptional()
+    @IsString()
+    token?: string;
 }
