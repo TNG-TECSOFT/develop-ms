@@ -1,11 +1,8 @@
 import { Controller, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '../common/guards/auth.guard';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { AuthGuard } from '../common/guards/auth.guard';
 import { TangoService } from './tango.service';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { CustomerQueryDto } from './dto/customer-query.dto';
-import { ProductQueryDto } from './dto/product-query.dto';
-import { OrderQueryDto } from './dto/order-query.dto';
+import { CreateOrderDto , CustomerQueryDto, ProductQueryDto, OrderQueryDto} from './dto/index';
 
 @Controller()
 export class TangoController {
@@ -36,9 +33,9 @@ export class TangoController {
   @MessagePattern('getOrderData')
   @UseGuards(AuthGuard)
   @UsePipes(new ValidationPipe({ transform: true }))
-  handleGetOrderData(@Payload() query: OrderQueryDto) {
+  async handleGetOrderData(@Payload() query: OrderQueryDto) {
     try {
-      return this.tangoService.getOrderData(query);
+      return await this.tangoService.getOrderData(query);
     } catch (error) {
       return error;
     }
@@ -46,9 +43,9 @@ export class TangoController {
 
   @MessagePattern('createOrder')
   @UsePipes(new ValidationPipe({ transform: true }))
-  handleCreateOrder(@Payload() orderData: CreateOrderDto) {
+  async handleCreateOrder(@Payload() orderData: CreateOrderDto) {
     try {
-      return this.tangoService.createOrder(orderData);
+      return await this.tangoService.createOrder(orderData);
     } catch (error) {
       return error;
     }

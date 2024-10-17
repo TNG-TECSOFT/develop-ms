@@ -120,3 +120,22 @@ export class TangoService {
     }
   }
 }
+/*
+%CODIGO% = CODIGO_CLIENTE + AÑO + MES + DIA + HORA + MINUTO + SEGUNDO +
+MILISEGUNDO
+Nota para lo casos en los que se realizan pedidos masivos en una sola ejecucion:
+Debido a que la velocidad de procesamiento en PHP es mas rapida que la obtencion de
+milisegundos, se remplaza el ultimo caracter por el indice de iteracion de cada pedido, es decir:
+P1021720220711154950844900 para la orden nro 1
+P1021720220711154950844901 para la orden nro 2
+P1021720220711154950844902 para la orden nro 3
+P1021720220711154950844903 para la orden nro 4
+P1021720220711154950844904 para la orden nro 5
+P1021720220711154950844905 para la orden nro 6
+*/
+
+//obtener fecha en formato ISO
+const time = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+// formatear fecha AÑO + MES + DIA + HORA + MINUTO + SEGUNDO + MILISEGUNDO
+const dayCurrent = time.toISOString().replace(/[-.:ZT]/g,"")
+console.log('Time: ', dayCurrent)
